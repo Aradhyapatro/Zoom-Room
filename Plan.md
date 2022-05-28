@@ -2,7 +2,7 @@
 
 - ~~init project~~
 - ~~init view~~
-- create a room
+- ~~create a room~~
 - my video
 - others video streaming
 - styling
