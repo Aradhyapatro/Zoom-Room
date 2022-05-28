@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- meta data -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title -->
     <title>Zoom-Room</title>
+
+    <!-- links -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      console.log("room id = <%= roomID %>");
+    </script>
   </head>
   <body>
-    <h2>Your-Zoom-Room</h2>
+    <h2 class="Text-Center">Your-Zoom-Room</h2>
 
     <div id="video-grid"></div>
 
