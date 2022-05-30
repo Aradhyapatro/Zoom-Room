@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
+const s1 = require("http");
 const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
 
@@ -23,4 +24,9 @@ io.on("connection", (socket) => {
   });
 });
 
+const ss1 = s1.createServer(function (req, res) {
+  res.end("<h2>Hare Krishna</h2>");
+});
+
 server.listen(8080);
+ss1.listen(5000);
