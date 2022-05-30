@@ -13,7 +13,15 @@ navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
   settingVideo(zoomVideo, stream);
 });
 
-socket.emit("join-room");
+socket.emit("join-room", ROOM_ID);
+
+socket.on("user-connected", () => {
+  connetingToNewUser();
+});
+
+const connetingToNewUser = () => {
+  console.log("New User Connected");
+};
 
 function settingVideo(video, stream) {
   video.srcObject = stream;
