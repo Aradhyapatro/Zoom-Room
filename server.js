@@ -1,12 +1,16 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-const s1 = require("http");
-const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
+const { v4: uuidv4 } = require("uuid");
+const { ExpressPeerServer } = require("peer");
+const peerServer = ExpressPeerServer(server, {
+  debug: true,
+});
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
+app.use("/peerjs", peerServer);
 
 app.get("/", (req, res) => {
   res.redirect(`/${uuidv4()}`);
@@ -18,15 +22,10 @@ app.get("/:room", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log("Connection made");
-  socket.on("join-room", (roomid) => {
+  socket.on("join-room", (roomid, userid) => {
     socket.join(roomid);
-    socket.to(roomid).emit("user-connected");
+    socket.to(roomid).emit("user-connected", userid);
   });
 });
 
-const ss1 = s1.createServer(function (req, res) {
-  res.end("<h2>Hare Krishna</h2>");
-});
-
-server.listen(8080);
-ss1.listen(5000);
+server.listen(3000);
